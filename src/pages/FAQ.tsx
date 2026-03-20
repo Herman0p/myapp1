@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Plus, Minus } from 'lucide-react';
 import { useState } from 'react';
+import ScrollReveal from '../components/ScrollReveal';
 
 const faqs = [
   {
@@ -30,57 +31,62 @@ export default function FAQ() {
 
   return (
     <main className="pt-32 pb-20 px-6">
-      <div className="max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-20 text-center"
-        >
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-8 italic">FAQ</h1>
-          <p className="text-xl text-zinc-500 leading-relaxed">
-            Common questions about my workflow, pricing, and services.
-          </p>
-        </motion.div>
+      <div className="max-w-4xl mx-auto">
+        <div className="mb-32 text-center">
+          <ScrollReveal width="100%" y={60}>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-12 italic">FAQ</h1>
+          </ScrollReveal>
+          <ScrollReveal width="100%" delay={0.3} y={30}>
+            <p className="text-xl md:text-3xl text-zinc-500 leading-relaxed font-light">
+              Common questions about my workflow, pricing, and services.
+            </p>
+          </ScrollReveal>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-6">
           {faqs.map((faq, idx) => (
-            <div 
-              key={idx}
-              className="border border-black/5 rounded-[32px] overflow-hidden bg-zinc-50 transition-all"
-            >
-              <button
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full p-8 flex items-center justify-between text-left hover:bg-zinc-100 transition-colors"
+            <ScrollReveal key={idx} width="100%" delay={idx * 0.1} y={20}>
+              <div 
+                className={`border border-black/5 rounded-[40px] overflow-hidden transition-all duration-700 ${openIndex === idx ? 'bg-white shadow-2xl shadow-black/5' : 'bg-zinc-50'}`}
               >
-                <span className="text-lg font-bold pr-8">{faq.question}</span>
-                <div className="shrink-0 w-8 h-8 rounded-full bg-white border border-zinc-200 flex items-center justify-center">
-                  {openIndex === idx ? <Minus size={16} /> : <Plus size={16} />}
-                </div>
-              </button>
-              
-              <motion.div
-                initial={false}
-                animate={{ height: openIndex === idx ? 'auto' : 0, opacity: openIndex === idx ? 1 : 0 }}
-                className="overflow-hidden"
-              >
-                <div className="p-8 pt-0 text-zinc-500 leading-relaxed">
-                  {faq.answer}
-                </div>
-              </motion.div>
-            </div>
+                <button
+                  onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                  className="w-full p-10 flex items-center justify-between text-left hover:bg-white transition-colors duration-500"
+                >
+                  <span className="text-xl md:text-2xl font-bold pr-12 tracking-tight">{faq.question}</span>
+                  <div className={`shrink-0 w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center transition-all duration-500 ${openIndex === idx ? 'bg-zinc-900 text-white border-zinc-900 rotate-180' : 'bg-white text-zinc-900'}`}>
+                    {openIndex === idx ? <Minus size={20} /> : <Plus size={20} />}
+                  </div>
+                </button>
+                
+                <motion.div
+                  initial={false}
+                  animate={{ height: openIndex === idx ? 'auto' : 0, opacity: openIndex === idx ? 1 : 0 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="overflow-hidden"
+                >
+                  <div className="p-10 pt-0 text-lg text-zinc-500 leading-relaxed font-light">
+                    {faq.answer}
+                  </div>
+                </motion.div>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
 
-        <div className="mt-20 p-12 bg-zinc-900 rounded-[40px] text-center text-white">
-          <h3 className="text-2xl font-bold mb-4">Still have questions?</h3>
-          <p className="text-zinc-400 mb-8">I'm here to help you grow your brand.</p>
-          <a 
-            href="/contact" 
-            className="inline-flex px-8 py-4 bg-emerald-600 text-white rounded-full font-bold uppercase tracking-widest text-xs hover:bg-emerald-500 transition-all"
-          >
-            Contact Me Directly
-          </a>
-        </div>
+        <ScrollReveal width="100%" delay={0.5} y={40}>
+          <div className="mt-32 p-16 bg-zinc-900 rounded-[60px] text-center text-white relative overflow-hidden">
+            <h3 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6 relative z-10">Still have questions?</h3>
+            <p className="text-zinc-400 text-xl mb-12 font-light relative z-10">I'm here to help you grow your brand and answer any specifics.</p>
+            <a 
+              href="/contact" 
+              className="relative z-10 inline-flex px-12 py-6 bg-emerald-600 text-white rounded-full font-bold uppercase tracking-widest text-[10px] hover:bg-emerald-500 transition-all duration-500"
+            >
+              Contact Me Directly
+            </a>
+            <div className="absolute top-[-20%] right-[-10%] w-[50%] aspect-square bg-emerald-600/20 blur-[100px] rounded-full" />
+          </div>
+        </ScrollReveal>
       </div>
     </main>
   );

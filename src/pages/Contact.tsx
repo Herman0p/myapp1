@@ -3,6 +3,7 @@ import { Mail, Send, Phone, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import { db } from '../lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import ScrollReveal from '../components/ScrollReveal';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -33,130 +34,120 @@ export default function Contact() {
   return (
     <main className="pt-32 pb-20 px-6">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-20"
-        >
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-8 italic">Let's Talk</h1>
-          <p className="text-xl text-zinc-500 max-w-2xl leading-relaxed">
-            Have a project in mind? Looking for a strategic partner to grow your brand? I'm always open to new collaborations.
-          </p>
-        </motion.div>
+        <div className="mb-32">
+          <ScrollReveal delay={0.1} y={60}>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-12 italic">Let's Talk</h1>
+          </ScrollReveal>
+          <ScrollReveal delay={0.3} y={30}>
+            <p className="text-xl md:text-3xl text-zinc-500 max-w-2xl leading-relaxed font-light">
+              Have a project in mind? Looking for a strategic partner to grow your brand? I'm always open to new collaborations.
+            </p>
+          </ScrollReveal>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           {/* Contact Info */}
-          <div className="space-y-12">
-            <div className="flex gap-6">
-              <div className="w-12 h-12 rounded-2xl bg-zinc-100 flex items-center justify-center shrink-0">
-                <Mail size={20} className="text-zinc-600" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold uppercase tracking-widest text-zinc-400 mb-2">Email</h4>
-                <a href="mailto:hermansyah.ap@gmail.com" className="text-xl font-medium hover:text-emerald-600 transition-colors">
-                  hermansyah.ap@gmail.com
-                </a>
-              </div>
-            </div>
-
-            <div className="flex gap-6">
-              <div className="w-12 h-12 rounded-2xl bg-zinc-100 flex items-center justify-center shrink-0">
-                <Phone size={20} className="text-zinc-600" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold uppercase tracking-widest text-zinc-400 mb-2">Phone</h4>
-                <p className="text-xl font-medium">+62 8XX XXXX XXXX</p>
-              </div>
-            </div>
-
-            <div className="flex gap-6">
-              <div className="w-12 h-12 rounded-2xl bg-zinc-100 flex items-center justify-center shrink-0">
-                <MapPin size={20} className="text-zinc-600" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold uppercase tracking-widest text-zinc-400 mb-2">Location</h4>
-                <p className="text-xl font-medium">Indonesia (Remote Worldwide)</p>
-              </div>
-            </div>
+          <div className="space-y-16">
+            {[
+              { icon: Mail, label: "Email", value: "hermansyah.ap@gmail.com", href: "mailto:hermansyah.ap@gmail.com" },
+              { icon: Phone, label: "Phone", value: "+62 8XX XXXX XXXX", href: null },
+              { icon: MapPin, label: "Location", value: "Indonesia (Remote Worldwide)", href: null }
+            ].map((item, idx) => (
+              <ScrollReveal key={item.label} delay={0.4 + idx * 0.1} y={20}>
+                <div className="flex gap-8 group">
+                  <div className="w-16 h-16 rounded-3xl bg-zinc-50 flex items-center justify-center shrink-0 border border-black/5 group-hover:bg-emerald-50 group-hover:text-emerald-600 transition-all duration-500">
+                    <item.icon size={24} />
+                  </div>
+                  <div>
+                    <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400 mb-3">{item.label}</h4>
+                    {item.href ? (
+                      <a href={item.href} className="text-2xl md:text-3xl font-bold tracking-tight hover:text-emerald-600 transition-colors duration-500">
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p className="text-2xl md:text-3xl font-bold tracking-tight">{item.value}</p>
+                    )}
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
 
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="bg-zinc-50 p-8 md:p-12 rounded-[40px] border border-black/5"
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-zinc-400 ml-1">Name</label>
+          <ScrollReveal delay={0.5} y={40} width="100%">
+            <div className="bg-zinc-50 p-10 md:p-16 rounded-[60px] border border-black/5 hover:bg-white hover:shadow-2xl hover:shadow-black/5 transition-all duration-700">
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 ml-4">Name</label>
+                    <input
+                      required
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-8 py-5 bg-white border border-zinc-100 rounded-3xl focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all text-lg font-light"
+                      placeholder="Your Name"
+                    />
+                  </div>
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 ml-4">Email</label>
+                    <input
+                      required
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-8 py-5 bg-white border border-zinc-100 rounded-3xl focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all text-lg font-light"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 ml-4">Subject</label>
                   <input
                     required
                     type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-6 py-4 bg-white border border-zinc-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
-                    placeholder="Your Name"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    className="w-full px-8 py-5 bg-white border border-zinc-100 rounded-3xl focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all text-lg font-light"
+                    placeholder="What's this about?"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-zinc-400 ml-1">Email</label>
-                  <input
+
+                <div className="space-y-3">
+                  <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 ml-4">Message</label>
+                  <textarea
                     required
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-6 py-4 bg-white border border-zinc-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
-                    placeholder="your@email.com"
+                    rows={6}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full px-8 py-5 bg-white border border-zinc-100 rounded-3xl focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 transition-all text-lg font-light resize-none"
+                    placeholder="Tell me about your project..."
                   />
                 </div>
-              </div>
 
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-zinc-400 ml-1">Subject</label>
-                <input
-                  required
-                  type="text"
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="w-full px-6 py-4 bg-white border border-zinc-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
-                  placeholder="What's this about?"
-                />
-              </div>
+                <button
+                  disabled={status === 'loading'}
+                  type="submit"
+                  className="w-full py-6 bg-zinc-900 text-white rounded-3xl font-bold uppercase tracking-widest text-[10px] hover:bg-emerald-600 transition-all duration-500 flex items-center justify-center gap-4 disabled:opacity-50 group"
+                >
+                  {status === 'loading' ? 'Sending...' : (
+                    <>
+                      Send Message
+                      <Send size={18} className="group-hover:translate-x-2 group-hover:-translate-y-1 transition-transform" />
+                    </>
+                  )}
+                </button>
 
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-zinc-400 ml-1">Message</label>
-                <textarea
-                  required
-                  rows={6}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-6 py-4 bg-white border border-zinc-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-
-              <button
-                disabled={status === 'loading'}
-                type="submit"
-                className="w-full py-5 bg-zinc-900 text-white rounded-2xl font-bold uppercase tracking-widest hover:bg-zinc-800 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
-              >
-                {status === 'loading' ? 'Sending...' : (
-                  <>
-                    Send Message
-                    <Send size={18} />
-                  </>
+                {status === 'success' && (
+                  <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center text-emerald-600 font-medium">Message sent successfully! I'll get back to you soon.</motion.p>
                 )}
-              </button>
-
-              {status === 'success' && (
-                <p className="text-center text-emerald-600 font-medium">Message sent successfully! I'll get back to you soon.</p>
-              )}
-              {status === 'error' && (
-                <p className="text-center text-rose-600 font-medium">Something went wrong. Please try again.</p>
-              )}
-            </form>
-          </motion.div>
+                {status === 'error' && (
+                  <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center text-rose-600 font-medium">Something went wrong. Please try again.</motion.p>
+                )}
+              </form>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </main>
