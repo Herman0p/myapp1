@@ -39,11 +39,11 @@ const experiences = [
 
 export default function About() {
   return (
-    <main className="pt-32 pb-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <main className="pt-24 lg:pt-32 pb-20">
+      <div className="max-w-7xl mx-auto px-10 md:px-12 lg:px-16 xl:px-20">
         <div className="mb-32">
           <ScrollReveal delay={0.1} y={60}>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-12 leading-[0.85]">
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-12 leading-[1.1] break-words">
               The Story <br /> Behind <br /> <span className="text-zinc-300 italic font-serif">Uncle</span>
             </h1>
           </ScrollReveal>

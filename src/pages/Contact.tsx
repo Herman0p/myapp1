@@ -32,14 +32,14 @@ export default function Contact() {
   };
 
   return (
-    <main className="pt-32 pb-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <main className="pt-24 lg:pt-32 pb-20">
+      <div className="max-w-7xl mx-auto px-10 md:px-12 lg:px-16 xl:px-20">
         <div className="mb-32">
           <ScrollReveal delay={0.1} y={60}>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-12 italic">Let's Talk</h1>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-12 italic break-words">Let's Talk</h1>
           </ScrollReveal>
           <ScrollReveal delay={0.3} y={30}>
-            <p className="text-xl md:text-3xl text-zinc-500 max-w-2xl leading-relaxed font-light">
+            <p className="text-xl md:text-3xl text-zinc-500 max-w-3xl leading-relaxed font-light">
               Have a project in mind? Looking for a strategic partner to grow your brand? I'm always open to new collaborations.
             </p>
           </ScrollReveal>

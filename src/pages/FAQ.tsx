@@ -30,14 +30,14 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <main className="pt-32 pb-20 px-6">
-      <div className="max-w-4xl mx-auto">
+    <main className="pt-24 lg:pt-32 pb-20">
+      <div className="max-w-4xl mx-auto px-10 md:px-12 lg:px-16 xl:px-20">
         <div className="mb-32 text-center">
           <ScrollReveal width="100%" y={60}>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-12 italic">FAQ</h1>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-12 italic break-words">FAQ</h1>
           </ScrollReveal>
           <ScrollReveal width="100%" delay={0.3} y={30}>
-            <p className="text-xl md:text-3xl text-zinc-500 leading-relaxed font-light">
+            <p className="text-xl md:text-3xl text-zinc-500 leading-relaxed font-light max-w-3xl mx-auto">
               Common questions about my workflow, pricing, and services.
             </p>
           </ScrollReveal>

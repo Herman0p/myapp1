@@ -101,13 +101,13 @@ export default function Home() {
       </section>
 
       {/* Services Quick View */}
-      <section className="bg-zinc-50 py-40 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section className="bg-zinc-50 py-40">
+        <div className="max-w-7xl mx-auto px-10 md:px-12 lg:px-16 xl:px-20">
           <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
             <ScrollReveal>
               <div>
-                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">Core Services</h2>
-                <p className="text-zinc-500 max-w-md text-lg font-light">Specialized solutions for modern digital brands, crafted with precision and purpose.</p>
+                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 break-words">Core Services</h2>
+                <p className="text-zinc-500 max-w-3xl text-lg font-light">Specialized solutions for modern digital brands, crafted with precision and purpose.</p>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.3}>
@@ -140,8 +140,8 @@ export default function Home() {
       </section>
 
       {/* Experience Summary */}
-      <section className="py-40 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+      <section className="py-40">
+        <div className="max-w-7xl mx-auto px-10 md:px-12 lg:px-16 xl:px-20 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="order-2 lg:order-1">
             <div className="grid grid-cols-2 gap-6">
               <ScrollReveal delay={0.1} y={40}>
@@ -199,10 +199,10 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-40 px-6 bg-zinc-900 text-white rounded-[60px] mx-6 mb-12 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto text-center relative z-10">
+      <section className="py-40 bg-zinc-900 text-white rounded-[60px] mx-10 md:mx-12 lg:mx-16 xl:mx-20 mb-12 overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-10 md:px-12 lg:px-16 xl:px-20 text-center relative z-10">
           <ScrollReveal width="100%">
-            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-12 leading-[0.85]">
+            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-12 leading-[1.1] break-words">
               Ready to <br /> <span className="text-emerald-500 italic font-serif">Elevate</span> Your <br /> Brand?
             </h2>
           </ScrollReveal>
